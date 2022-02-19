@@ -1,0 +1,38 @@
+{% set name = "pyqt-test" %}
+{% set version = "0.0.2" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/johnbradley/pyqt-test/archive/{{ version }}.tar.gz
+  sha256: 59804cd7e29d346ac14690d273af2a4e3ecfdcc9f3a575056c87675654f043e9
+
+build:
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv
+  number: 0
+
+requirements:
+  host:
+    - python
+    - pip
+  run:
+    - python
+
+test:
+  imports:
+    - pyqt_test
+  commands:
+    - pip check
+  requires:
+    - pip
+
+about:
+  license: Apache-2.0
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - johnbradley
